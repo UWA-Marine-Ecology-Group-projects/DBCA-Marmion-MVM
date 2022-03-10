@@ -390,7 +390,7 @@ html, body, .test_map_div {
                                   accordion(id = "id-accordionv1",
                                             accordionItem(
                                               id = "accordionvalues",
-                                              title = "Conservation/ecological information", #unique(values.acc$nice.cat),
+                                              title = "Conservation/ecological information (please remember that you will need to map these)", #unique(values.acc$nice.cat),
                                               solidHeader = TRUE, status = "primary",
                                               checkboxGroupInput(paste0("checkbox_",
                                                                         unique(values.acc$Category)),
@@ -402,7 +402,7 @@ html, body, .test_map_div {
                                   accordion(id = "id-accordionp1",
                                             accordionItem(
                                               id = "accordionpressures",
-                                              title =  "Environmental pressures",
+                                              title =  "Environmental pressures (please remember that you will need to map these)",
                                               solidHeader = TRUE, status = "primary",
                                               do.call(accordion, c(list(id = "id-accordionpressures1"),
                                                                    lapply(seq_along(unique(filter(pressures.acc, cat_num %in% c("8"))$Sub.category)), function(x){

@@ -1,0 +1,13 @@
+name: marinevaluesmapper-marmion
+title: marinevaluesmapper-marmion
+username:
+account: matt-navarro
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5753902
+bundleId: 5627481
+url: https://marine-ecology.shinyapps.io/marinevaluesmapper-marmion/
+when: 1646106545.17699
+lastSyncTime: 1646106545.17699
+asMultiple: FALSE
+asStatic: FALSE

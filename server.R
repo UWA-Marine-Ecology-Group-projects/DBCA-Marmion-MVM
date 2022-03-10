@@ -421,13 +421,12 @@ server = function(input, output, session) {
 
               addLayersControl(
                 baseGroups = c("Open Street Map", "World Imagery"),
-                overlayGroups = c("Depth"),
+                overlayGroups = c("Depth", "Navigational chart"),
                 options = layersControlOptions(collapsed = FALSE)) %>%
               
               addPolygons(
                 data = data,
                 layerId = data$ID,
-                # label = data$ID,
                 group = "unclicked_poly",
                 fillColor = "white",
                 fillOpacity = 0.2,
@@ -444,7 +443,17 @@ server = function(input, output, session) {
                 position = "bottomright",
                 group = "Depth"
               ) %>%
-              hideGroup("Depth")
+              addGeotiff(file = "spatial/cropped_raster.tif",
+                         resolution = 250,
+                         group = "Navigational chart",
+                         colorOptions = colorOptions(
+                           palette = c("#000000", "#666666", "#FFFFFF"),
+                           na.color = "transparent"
+                         )
+              ) %>%
+              # addRasterImage(x = r, colors = rasterpal, group = "Navigational chart") %>%
+              hideGroup("Depth") %>%
+              hideGroup("Navigational chart")
           })
         
         print(Sys.time())
@@ -502,7 +511,7 @@ server = function(input, output, session) {
               
               addLayersControl(
                 baseGroups = c("Open Street Map", "World Imagery"),
-                overlayGroups = c("Depth", "Town labels", "Detailed labels"),
+                overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
                 options = layersControlOptions(collapsed = FALSE)
               ) %>%
               addPolygons(
@@ -524,7 +533,8 @@ server = function(input, output, session) {
                 title = "Depth",
                 group = "Depth"
               )%>%
-              hideGroup("Depth")
+              hideGroup("Depth") %>%
+              hideGroup("Navigational chart")
           })
       })
       
@@ -627,7 +637,7 @@ server = function(input, output, session) {
               h4(strong(paste(
                 "Please click on the areas important to you for ",
                 title,
-                ". All cells are 1 km wide at the widest point. ",
+                ". All cells are 2 km wide at the widest point. ",
                 sep = ""
               )), labelMandatory("")),
               
@@ -707,7 +717,7 @@ server = function(input, output, session) {
               
               h4(strong(paste(
                 "Please click on the areas important for the ",
-                simple.title, " you would like to report on. All cells are 1 km wide at the widest point.",
+                simple.title, " you would like to report on. All cells are 2 km wide at the widest point.",
                 sep = ""
               )), labelMandatory("")),
               tags$h4(
@@ -773,7 +783,7 @@ server = function(input, output, session) {
             
             h4(strong(paste(
               "Please click on the areas important for the ",
-              simple.title, " you would like to report on. All cells are 1 km wide at the widest point.",
+              simple.title, " you would like to report on. All cells are 2 km wide at the widest point.",
               sep = ""
             )), labelMandatory("")),
             tags$h4(
@@ -862,38 +872,7 @@ server = function(input, output, session) {
           eventExpr = input[[paste0(plotname, "_zoom", sep = "")]], {
             
             # Bigger number = more zoomed in
-            if(input[[paste0(plotname, "_zoom", sep = "")]] >= 14 & nrow(on.14) > 0){
-              leafletProxy(
-                mapId = plotname, 
-                session = session) %>% 
-                clearMarkers() %>%
-                addLabelOnlyMarkers(lng = on.14$X, 
-                                    lat = on.14$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.14$Name) %>%
-                addLabelOnlyMarkers(lng = on.12$X, 
-                                    lat = on.12$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.12$Name) %>%
-                addLabelOnlyMarkers(lng = on.10$X, 
-                                    lat = on.10$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.10$Name) %>%
-                addLayersControl(
-                  baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels"),
-                  options = layersControlOptions(collapsed = FALSE))
-              
-            } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 12 & nrow(on.12) > 0) {
+            if(input[[paste0(plotname, "_zoom", sep = "")]] >= 12 & nrow(on.12) > 0) {
               
               leafletProxy(
                 mapId = plotname, 
@@ -915,7 +894,7 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels"),
+                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
                   options = layersControlOptions(collapsed = FALSE))
               
             } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 10 & nrow(on.10) > 0) {
@@ -933,34 +912,10 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels"),
+                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
                   options = layersControlOptions(collapsed = FALSE))
               
-            } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 8 & nrow(on.8) > 0) {
-              
-              leafletProxy(
-                mapId = plotname, 
-                session = session) %>% 
-                clearMarkers() %>%
-                addLabelOnlyMarkers(lng = on.8$X, 
-                                    lat = on.8$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.8$Name) %>%
-                addLabelOnlyMarkers(lng = towns$X, 
-                                    lat = towns$Y,
-                                    group = "Town labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = towns$Name) %>%
-                addLayersControl(
-                  baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Town labels" ,"Detailed labels"),
-                  options = layersControlOptions(collapsed = FALSE))
-            }
+            } 
           }
         )
       })
@@ -1284,12 +1239,12 @@ server = function(input, output, session) {
         title = "Survey submitted",
         html = TRUE,
         text = tagList(
-        "Thank you for providing information to inform the South Coast Marine Park planning process.",
+        "Thank you for providing information to inform the review and extension process of Marmion Marine Park.",
         br(), br(),
-        "For more information about the proposed South Coast Marine Park please follow ", 
-        tags$a(href="https://www.dbca.wa.gov.au/parks-and-wildlife-service/plan-for-our-parks/south-coast-marine-park", "this link"),
+        "For more information please follow ", 
+        tags$a(href="https://www.dbca.wa.gov.au/parks-and-wildlife-service/plan-for-our-parks/marmion-marine-park", "this link"),
         br(),br(),
-        "Should you have information identifying values on the South Coast that are not in a suitable format for input via this tool, please contact pscmp@dbca.wa.gov.au"),
+        "Should you have information identifying values in the Marmion Marine Park that are not in a suitable format for input via this tool, please contact marmion@dbca.wa.gov.au"),
         size = "s",
         closeOnEsc = FALSE,
         closeOnClickOutside = FALSE,
@@ -1375,38 +1330,7 @@ server = function(input, output, session) {
           eventExpr = input[[paste0(plotname, "_zoom", sep = "")]], {
             
             # Bigger number = more zoomed in
-            if(input[[paste0(plotname, "_zoom", sep = "")]] >= 14){
-              leafletProxy(
-                mapId = plotname, 
-                session = session) %>% 
-                clearMarkers() %>%
-                addLabelOnlyMarkers(lng = on.14$X, 
-                                    lat = on.14$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.14$Name) %>%
-                addLabelOnlyMarkers(lng = on.12$X, 
-                                    lat = on.12$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.12$Name) %>%
-                addLabelOnlyMarkers(lng = on.10$X, 
-                                    lat = on.10$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.10$Name) %>%
-                addLayersControl(
-                  baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels"),
-                  options = layersControlOptions(collapsed = FALSE))
-              
-            } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 12) {
+            if(input[[paste0(plotname, "_zoom", sep = "")]] >= 12) {
               
               leafletProxy(
                 mapId = plotname, 
@@ -1428,7 +1352,7 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels"),
+                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
                   options = layersControlOptions(collapsed = FALSE))
               
             } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 10) {
@@ -1446,34 +1370,10 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels"),
+                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
                   options = layersControlOptions(collapsed = FALSE))
               
-            } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 8) {
-              
-              leafletProxy(
-                mapId = plotname, 
-                session = session) %>% 
-                clearMarkers() %>%
-                addLabelOnlyMarkers(lng = on.8$X, 
-                                    lat = on.8$Y,
-                                    group = "Detailed labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = on.8$Name) %>%
-                addLabelOnlyMarkers(lng = towns$X, 
-                                    lat = towns$Y,
-                                    group = "Town labels",
-                                    labelOptions = labelOptions(noHide = T, 
-                                                                textsize = "12px", 
-                                                                textOnly = TRUE),
-                                    label = towns$Name) %>%
-                addLayersControl(
-                  baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Town labels" ,"Detailed labels"),
-                  options = layersControlOptions(collapsed = FALSE))
-            }
+            } 
           }
         )
         

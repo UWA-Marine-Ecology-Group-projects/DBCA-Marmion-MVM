@@ -53,26 +53,6 @@ options(mongodb = list(
 
 databaseName <- "marmion"
 
-# directory where responses get stored in dropbox
-responsesDir <- file.path("responses")
-outputpolygonsdir <- "responses/polygons" 
-outputanswersdir <- "responses/answers" 
-outputvaluesdir <- "responses/values" 
-
-## Bookmarking ----
-# enableBookmarking(store = "server")
-
-## Themes ----
-blank_theme <- theme_minimal()+
-  theme(
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    panel.border = element_blank(),
-    panel.grid=element_blank(),
-    axis.ticks = element_blank(),
-    plot.title=element_text(size=14, face="bold")
-  )
-
 ## Leaflet spinner ----
 options(spinner.color="#0275D8", spinner.color.background="#ffffff", spinner.size=2)
 
@@ -188,15 +168,12 @@ pressures.acc <- activities %>%
 # bathy <- readOGR(dsn="spatial/bathy_cropped_single parts.shp", layer="bathy_cropped_single parts")
 # save(bathy, file = "spatial/bathy.rda")
 
-# plot(bathy)
-
-placenames <- st_read(dsn = "spatial/Marmion_PlaceNames.shp")
+placenames <- st_read(dsn = "spatial/Marmion_PlaceNames.shp") %>%
+  mutate(zoom.on = str_replace_all(.$zoom.on, "8", "10"))
 
 labels <-  bind_cols(data.frame(st_coordinates(placenames[,1])), placenames) %>%
   filter(!X%in%c("NaN"))
 
-# Zoom on at 8 and off at 10
-# Zoom on at 14
 # Zoom on at 12
 # Zoom on at 10
 
@@ -206,14 +183,8 @@ on.10 <- labels %>%
 on.12 <- labels %>%
   filter(zoom.on %in% c(12))
 
-on.14 <- labels %>%
-  filter(zoom.on %in% c(14))
-
-on.8 <- labels %>%
-  filter(zoom.on %in% c(8))
-
 # Read in spatial files ----
-load("spatial/grid.2.rda")
+load("spatial/grid.2km.rda")
 load("spatial/bathy.rda")
 
 unique(bathy@data$LABEL)
@@ -237,6 +208,25 @@ SpP = SpatialPolygonsDataFrame(
   ))),
   match.ID = FALSE
 )
+
+# Testing out navigation charts=
+r <- raster("spatial/cropped_raster.tif")
+
+rasterpal <- colorNumeric(c("#000000", "#666666", "#FFFFFF"), values(r),
+                    na.color = "transparent")
+
+# m <- leaflet() %>%
+#   addGeotiff(file = "spatial/cropped_raster.tif",
+#              resolution = 250,
+#              # pixelValuesToColorFn = myCustomJSFunc , 
+#              colorOptions = colorOptions(
+#                palette = c("#000000", "#666666", "#FFFFFF"),
+#                na.color = "transparent"
+#              )
+#              )
+# #   addRasterImage(x = r, colors = rasterpal)
+# # 
+# m
 
 # which fields get saved ----
 fieldsAll <- c("name", "email", "phone", "residence","postcode", "gender", "age", "frequency", activity.input.list, values.input.list, pressures.input.list, "visited")
