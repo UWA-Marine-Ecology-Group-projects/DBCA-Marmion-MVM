@@ -156,6 +156,8 @@ server = function(input, output, session) {
     removeModal()
   })
   
+
+  
   # When moving from activities to spatial show 
   observeEvent(input$nextspatial,
                
@@ -354,6 +356,22 @@ server = function(input, output, session) {
 
     return(data)
   })
+  
+  
+  if (nrow(selected.data()) > 10){
+    shinyalert(
+      title = "You have chosen more than 10 activities.",
+      text = "Choosing more than 10 activities/knowledge topics will make the app run slow. Please consider mapping your first 10 activities/knowledge topics now and doing the survey again for other activities later",
+      size = "s",
+      closeOnEsc = FALSE,
+      closeOnClickOutside = FALSE,
+      html = FALSE,
+      type = "warning",
+      showConfirmButton = FALSE,
+      timer = 0,
+      animation = TRUE
+    )
+  }
   
   #### Create a map output for every Activity and Areas of conservation value that is selected ----
   # Beginning of map ----

@@ -267,6 +267,7 @@ html, body, .test_map_div {
                          tabPanel("Values mapping",
                                   h1("Values mapping"),
                                   h2("Which activities would you like to map?"),
+                                  h3("Note: If you make more than 10 selections the app will run slowly. Please consider mapping your first 10 now and doing the survey again for additional selections later"),
                                   # Activity 1 ----
                                   accordion(id = "id-accordiona1",
                                             accordionItem(
