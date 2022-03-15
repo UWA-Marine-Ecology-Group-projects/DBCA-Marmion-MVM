@@ -90,6 +90,18 @@ server = function(input, output, session) {
                }
   )
   
+  # Need to validate traditional owner but don't collect if user is Not Aboriginal or Torres Strait Islander
+  observeEvent(input$origin,
+               # If only aboriginal is selected, keep as nothing selected
+               if (input$origin %in% c("Yes, Aboriginal")){
+                 updateRadioButtons(session, "traditionalowner", selected = character(0))
+                 
+                 # else change to No
+               } else {
+                 updateRadioButtons(session, "traditionalowner", selected = "No")
+               }
+  )
+  
   # Only enable nextactivities if all contact info is filled out
   observeEvent(input$nextactivities,
                if (input$name %in% c(NA, '', ' ') |
@@ -98,6 +110,8 @@ server = function(input, output, session) {
                    is.null(input$residence) | # if not null and all others are filled out, then the next statement will check the postcode format
                    is.null(input$gender) |
                    is.null(input$age) |
+                   is.null(input$origin) |
+                   is.null(input$traditionalowner) |
                    is.null(input$frequency) 
                    
                    ) {
@@ -155,8 +169,6 @@ server = function(input, output, session) {
   observeEvent(input$oki, {
     removeModal()
   })
-  
-
   
   # When moving from activities to spatial show 
   observeEvent(input$nextspatial,
@@ -273,15 +285,9 @@ server = function(input, output, session) {
                }
   )
   
-  
-  
-  
-  
   observeEvent(input$exit, {
     removeModal()
   })
-  
-  
   
   # Fill in source info ----
   # observe({
@@ -311,7 +317,6 @@ server = function(input, output, session) {
   # Validate postcode ----
   iv$add_rule("postcode", ~ if (!nchar(gsub("[^0-9]+", "", input$postcode)) == 4)
     "Please enter a valid Australian postcode")
-  
   
   selected.data <- reactive({
     # Get responses to the activity accordion ----
@@ -358,20 +363,19 @@ server = function(input, output, session) {
   })
   
   
-  if (nrow(selected.data()) > 10){
-    shinyalert(
-      title = "You have chosen more than 10 activities.",
-      text = "Choosing more than 10 activities/knowledge topics will make the app run slow. Please consider mapping your first 10 activities/knowledge topics now and doing the survey again for other activities later",
-      size = "s",
-      closeOnEsc = FALSE,
-      closeOnClickOutside = FALSE,
-      html = FALSE,
-      type = "warning",
-      showConfirmButton = FALSE,
-      timer = 0,
-      animation = TRUE
-    )
-  }
+  observe({
+    if(nrow(selected.data())==11) {
+      shinyalert(
+        title = "You have chosen more than 10 activities.",
+        text = "Choosing more than 10 activities/knowledge topics will make the app run slow. Please consider mapping your first 10 activities/knowledge topics now and doing the survey again for other activities later",
+        type = "warning",
+        # timer = 3000,
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE
+      )
+    }
+    
+  })
   
   #### Create a map output for every Activity and Areas of conservation value that is selected ----
   # Beginning of map ----
@@ -439,7 +443,7 @@ server = function(input, output, session) {
 
               addLayersControl(
                 baseGroups = c("Open Street Map", "World Imagery"),
-                overlayGroups = c("Depth", "Navigational chart"),
+                overlayGroups = c("Depth"), #, "Navigational chart"
                 options = layersControlOptions(collapsed = FALSE)) %>%
               
               addPolygons(
@@ -461,17 +465,17 @@ server = function(input, output, session) {
                 position = "bottomright",
                 group = "Depth"
               ) %>%
-              addGeotiff(file = "spatial/cropped_raster.tif",
-                         resolution = 250,
-                         group = "Navigational chart",
-                         colorOptions = colorOptions(
-                           palette = c("#000000", "#666666", "#FFFFFF"),
-                           na.color = "transparent"
-                         )
-              ) %>%
+              # addGeotiff(file = "spatial/cropped_raster.tif",
+              #            resolution = 250,
+              #            group = "Navigational chart",
+              #            colorOptions = colorOptions(
+              #              palette = c("#000000", "#666666", "#FFFFFF"),
+              #              na.color = "transparent"
+              #            )
+              # ) %>%
               # addRasterImage(x = r, colors = rasterpal, group = "Navigational chart") %>%
-              hideGroup("Depth") %>%
-              hideGroup("Navigational chart")
+              hideGroup("Depth") #%>%
+              #hideGroup("Navigational chart")
           })
         
         print(Sys.time())
@@ -529,7 +533,7 @@ server = function(input, output, session) {
               
               addLayersControl(
                 baseGroups = c("Open Street Map", "World Imagery"),
-                overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
+                overlayGroups = c("Depth", "Detailed labels"), #, "Navigational chart"
                 options = layersControlOptions(collapsed = FALSE)
               ) %>%
               addPolygons(
@@ -551,8 +555,8 @@ server = function(input, output, session) {
                 title = "Depth",
                 group = "Depth"
               )%>%
-              hideGroup("Depth") %>%
-              hideGroup("Navigational chart")
+              hideGroup("Depth") #%>%
+              #hideGroup("Navigational chart")
           })
       })
       
@@ -912,7 +916,7 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
+                  overlayGroups = c("Depth", "Detailed labels"), #, "Navigational chart"
                   options = layersControlOptions(collapsed = FALSE))
               
             } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 10 & nrow(on.10) > 0) {
@@ -930,7 +934,7 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
+                  overlayGroups = c("Depth", "Detailed labels"), #, "Navigational chart"
                   options = layersControlOptions(collapsed = FALSE))
               
             } 
@@ -1063,15 +1067,7 @@ server = function(input, output, session) {
       # Write polygons to database ----
       saveData(clicks, "polygons")
 
-      # Write polygons to dropbox ----
-      # Write the data to a temporary file locally
-      filePath <- file.path(tempdir(), paste("polygons", fileName, sep = "_"))
-      write.csv(clicks,
-                filePath,
-                row.names = FALSE,
-                quote = TRUE)
-      
-      # Get responses to all other questions - write to dropbox and googledrive ----
+      # Get responses to all other questions ----
       fieldsAll <- c(fieldsAll)
       
       data <- sapply(fieldsAll, function(x)
@@ -1088,7 +1084,10 @@ server = function(input, output, session) {
                     postcode = NA_real_,
                     gender = NA_real_,
                     age = NA_real_,
-                    frequency = NA_real_)
+                    frequency = NA_real_,
+                    origin = NA_real_,
+                    traditionalowner = NA_real_,
+                    generalcomment= NA_real_)
 
       
       # Get basic question answers (contact) ----
@@ -1103,7 +1102,10 @@ server = function(input, output, session) {
                       gender,
                       age,
                       visited,
-                      frequency) %>%
+                      frequency,
+                      origin,
+                      traditionalowner,
+                      generalcomment) %>%
         mutate(userID = userID) %>%
         distinct() %>%
         mutate(source = urlsource) %>%
@@ -1114,7 +1116,7 @@ server = function(input, output, session) {
       activities <- data %>%
         add_column(!!!vis.cols[!names(vis.cols) %in% names(.)]) %>%
         glimpse() %>%
-        dplyr::select(!c(name, email, phone, residence, postcode, gender, age, visited, frequency)) %>%
+        dplyr::select(!c(name, email, phone, residence, postcode, gender, age, visited, frequency, origin, traditionalowner, generalcomment)) %>%
         distinct() %>%
         glimpse() %>%
         mutate(blank_activities = "blank") %>% # create a dummy column so gather works
@@ -1192,7 +1194,10 @@ server = function(input, output, session) {
           Autumn,
           Winter,
           Spring,
-          source
+          source,
+          origin, 
+          traditionalowner,
+          generalcomment
         ) %>%
         mutate(time = humanTime()) %>%
         mutate(timezone = str_replace_all(Sys.timezone(), c("[^[:alnum:]]" = ".")))# %>%
@@ -1204,19 +1209,13 @@ server = function(input, output, session) {
       # Write answers to database ----
       saveData(data, "answers")
       
-      # Write answers to dropbox ----
-      # Write the data to a temporary file locally
-      filePath <-
-        file.path(tempdir(), paste("answers", fileName, sep = "_"))
-      write.csv(data, filePath, row.names = FALSE, quote = TRUE)
-      
       # Create a bunch of empty dataframes so that the data will save even if these questions are skipped
       
       matrix9blank <- data.frame(X. = NA,
                                  stringsAsFactors = FALSE)
       
       matrix9 <-
-        bind_rows(matrix9blank, as.data.frame(input$rm9)) %>% # The current level of protection and management of marine areas in the South Coast is sufficient to guarantee conservation of marine ecosystems
+        bind_rows(matrix9blank, as.data.frame(input$rm9)) %>% 
         dplyr::rename(The.current.level.of.protection.and.management.guarantee.conservation = X.)
       
       matrix10 <- input$rm10 #%>% glimpse()
@@ -1241,15 +1240,6 @@ server = function(input, output, session) {
 
       # Write answers to database ----
       saveData(matrix.answers, "values")
-      
-      # Write answers to dropbox ----
-      # Write the data to a temporary file locally
-      filePath <-
-        file.path(tempdir(), paste("values", fileName, sep = "_"))
-      write.csv(matrix.answers,
-                filePath,
-                row.names = FALSE,
-                quote = TRUE)
       
       shinyjs::runjs("swal.close();")
       
@@ -1285,8 +1275,6 @@ server = function(input, output, session) {
       # append to googledrive ----
       matrix.gs <- matrix.answers %>% as.list() %>% data.frame()
       sheet_append("15CoscrgN2DDG00LgLNqWQMcU_U8X2r9eyAD5gP7eTXY", sheet = 3, data = matrix.gs)
-      
-      # resetLoadingButton("submit")
       
       }
       
@@ -1370,7 +1358,7 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
+                  overlayGroups = c("Depth", "Detailed labels"), #, "Navigational chart"
                   options = layersControlOptions(collapsed = FALSE))
               
             } else if(input[[paste0(plotname, "_zoom", sep = "")]] >= 10) {
@@ -1388,7 +1376,7 @@ server = function(input, output, session) {
                                     label = on.10$Name) %>%
                 addLayersControl(
                   baseGroups = c("Open Street Map", "World Imagery"),
-                  overlayGroups = c("Depth", "Detailed labels", "Navigational chart"),
+                  overlayGroups = c("Depth", "Detailed labels"), #, "Navigational chart"
                   options = layersControlOptions(collapsed = FALSE))
               
             } 
@@ -1460,7 +1448,6 @@ server = function(input, output, session) {
         label = "Submit",
         style = "unite",
         size = "md",
-        # icon = icon("chevron-up"),
         color = "primary"
       )
       

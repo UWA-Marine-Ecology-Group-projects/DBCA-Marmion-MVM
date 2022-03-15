@@ -241,6 +241,21 @@ html, body, .test_map_div {
                                                            "75+"),
                                                selected = character(0)),
                                   
+                                  h4(strong("Are you of Aboriginal or Torres Strait Islander origin?"), labelMandatory("")),
+                                  radioButtons("origin", label = NULL,
+                                               choices = c("No",
+                                                           "Yes, Aboriginal",
+                                                           "Yes, Torres Strait Islander"),
+                                               selected = character(0)),
+                                  
+                                  conditionalPanel('input.origin.includes("Yes, Aboriginal")',
+                                                   h4(strong("Do you identify as a Traditional Owner of the South Coast region?"), labelMandatory("")),
+                                                   radioButtons("traditionalowner", label = NULL,
+                                                                choices = c("Yes",
+                                                                            "No"),
+                                                                selected = character(0))
+                                  ),
+                                  
                                   h4(strong("Roughly how often do you visit the coastal areas adjacent to North Beach, Ocean Reef, Yanchep and Two Rocks (e.g., visit a beach or go out on a boat)?"), labelMandatory("")),
                                   radioButtons("frequency", label = NULL,
                                                choices = c("Haven't ever visited",
@@ -391,7 +406,7 @@ html, body, .test_map_div {
                                   accordion(id = "id-accordionv1",
                                             accordionItem(
                                               id = "accordionvalues",
-                                              title = "Conservation/ecological information (please remember that you will need to map these)", #unique(values.acc$nice.cat),
+                                              title = "Conservation/ecological information (you will be asked to map these)", #unique(values.acc$nice.cat),
                                               solidHeader = TRUE, status = "primary",
                                               checkboxGroupInput(paste0("checkbox_",
                                                                         unique(values.acc$Category)),
@@ -403,7 +418,7 @@ html, body, .test_map_div {
                                   accordion(id = "id-accordionp1",
                                             accordionItem(
                                               id = "accordionpressures",
-                                              title =  "Environmental pressures (please remember that you will need to map these)",
+                                              title =  "Environmental pressures (you will be asked to map these)",
                                               solidHeader = TRUE, status = "primary",
                                               do.call(accordion, c(list(id = "id-accordionpressures1"),
                                                                    lapply(seq_along(unique(filter(pressures.acc, cat_num %in% c("8"))$Sub.category)), function(x){
@@ -479,7 +494,7 @@ html, body, .test_map_div {
                                   h1("Social values and benefits"),
                                   br(),
                                   h2(
-                                    "Please indicate on the scale below your level of agreement with each of the following statements."),
+                                    "Please indicate on the scale below your level of agreement with each of the following statements. If you are unsure please leave it blank."),
                                   
                                   h3(em(
                                     "The current level of protection and management of marine areas in Marmion is sufficient to guarantee conservation of marine ecosystems")),
@@ -495,7 +510,7 @@ html, body, .test_map_div {
                                   br(),
                                   
                                   h3(em(
-                                    "The marine areas in the Marmion Marine Park provide", strong("me"), "with the following", strong("opportunities or benefits"))
+                                    "The marine areas in the Marmion Marine Park provide", strong("me"), "with the following", strong("opportunities or benefits"), "Leave blank if you are unsure." )
                                   ),
                                   
                                   shinyRadioMatrix::radioMatrixInput(
@@ -522,7 +537,7 @@ html, body, .test_map_div {
                                   
                                   br(),
                                   
-                                  h3(em("The marine areas in the Marmion Marine Park provide the following", strong("benefits to society"))
+                                  h3(em("The marine areas in the Marmion Marine Park provide the following", strong("benefits to society"), "Leave blank if you are unsure." )
                                   ),
                                   shinyRadioMatrix::radioMatrixInput(
                                     inputId = "rm11",
@@ -575,7 +590,13 @@ html, body, .test_map_div {
                                   
                                   br(),
                                   
-                                  
+                                  textAreaInput(
+                                    "generalcomment",
+                                    width = "94%",
+                                    label = "Do you have any additional comments you would like to provide?",
+                                    placeholder = NULL,
+                                    height = "200px"
+                                  ),
                                   
                                   div(style="display:inline-block;width:100%;text-align: center;", 
                                       div(column(1,offset=1, actionBttn(

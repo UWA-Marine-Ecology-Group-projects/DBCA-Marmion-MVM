@@ -39,12 +39,10 @@ The responses you provide will be used by DBCA and local planners to help design
 
 If you have any questions about the survey please contact Dr. Matt Navarro at UWA on (08) 6488 4364. 
 
-If you have questions about south coast marine park planning in general please contact the DBCA south coast marine management planning team at pscmp@dbca.wa.gov.au
+If you have questions about Marmion marine park planning in general please contact the DBCA Marmion marine management planning team at marmion@dbca.wa.gov.au.
 
 Sincerely,
 Dr. Matt Navarro
-
-
 
 
 *Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures.  Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.  In addition, any person not satisfied with the response of researchers may raise ethics issues or concerns, and may make any complaints about this research project by contacting the Human Ethics office at UWA on (08) 6488 4703 or by emailing to humanethics@uwa.edu.au. All research participants are entitled to retain a copy of any Participant Information Form and/or Participant Consent Form relating to this research project.*

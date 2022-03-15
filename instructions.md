@@ -4,7 +4,7 @@ Instructions
 </b></p></h1>
 
 <h2><p style = "text-align: center;"></br>
-Use this section to map your use and local knowledge of the marine environment on the South Coast
+Use this section to map your use and local knowledge of the marine environment in the Marmion Marine Park
 </p></h1>
 
 <h2><p style = "text-align: center;"><b>

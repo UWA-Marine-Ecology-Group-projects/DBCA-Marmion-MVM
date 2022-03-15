@@ -10,7 +10,6 @@ library(mongolite)
 library(plyr)
 library(purrr)
 library(raster)
-library(rdrop2)
 library(rgdal)
 library(rgeos)
 library(rrapply)
@@ -36,7 +35,6 @@ library(rrapply)
 library(stringi)
 library(ggplot2)
 library(dplyr) # load last to stop issues with plyr 
-library(profvis)
 
 gs4_auth(cache = "secrets", email = TRUE)
 
@@ -165,6 +163,9 @@ pressures.acc <- activities %>%
 # grid.2km <- readOGR(dsn="spatial/Marmion_commonwealth grids_0.016 degrees_2 km.shp", layer="Marmion_commonwealth grids_0.016 degrees_2 km")
 # save(grid.2km, file = "spatial/grid.2km.rda")
 
+# grid.2km <- readOGR(dsn="spatial/Marmion_state grids_0.016 degrees_2 km.shp", layer="Marmion_state grids_0.016 degrees_2 km")
+# save(grid.2km, file = "spatial/grid.2km.rda")
+
 # bathy <- readOGR(dsn="spatial/bathy_cropped_single parts.shp", layer="bathy_cropped_single parts")
 # save(bathy, file = "spatial/bathy.rda")
 
@@ -210,10 +211,10 @@ SpP = SpatialPolygonsDataFrame(
 )
 
 # Testing out navigation charts=
-r <- raster("spatial/cropped_raster.tif")
+# r <- raster("spatial/cropped_raster.tif")
 
-rasterpal <- colorNumeric(c("#000000", "#666666", "#FFFFFF"), values(r),
-                    na.color = "transparent")
+# rasterpal <- colorNumeric(c("#000000", "#666666", "#FFFFFF"), values(r),
+#                     na.color = "transparent")
 
 # m <- leaflet() %>%
 #   addGeotiff(file = "spatial/cropped_raster.tif",
@@ -229,10 +230,10 @@ rasterpal <- colorNumeric(c("#000000", "#666666", "#FFFFFF"), values(r),
 # m
 
 # which fields get saved ----
-fieldsAll <- c("name", "email", "phone", "residence","postcode", "gender", "age", "frequency", activity.input.list, values.input.list, pressures.input.list, "visited")
+fieldsAll <- c("name", "email", "phone", "residence","postcode", "gender", "age", "origin", "traditionalowner", "generalcomment", "frequency", activity.input.list, values.input.list, pressures.input.list, "visited")
 
 # which fields are mandatory ----
-fieldsMandatory <- c("name", "email", "phone", "residence", "gender", "age")
+fieldsMandatory <- c("name", "email", "phone", "residence", "gender", "age", "origin", "traditionalowner")
 
 # CSS to use in the app ----
 appCSS <-
