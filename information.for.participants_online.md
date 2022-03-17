@@ -29,11 +29,11 @@ The information you provide will help ensure the Marmion marine park is suitably
 
 ## Possible risks and how they will be managed
 
-The responses you provide will be used by DBCA and local planners to help design the south coast marine park. The aim is to use the information to minimise the impact of management arrangements on south coast marine users, where possible. 
+The responses you provide will be used by DBCA and local planners to help design the Marmion marine park. The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
 
 ## Contacts
 
-If you have questions about this survey or Marmion marine park planning in general please contact the south coast marine management planning team at pscmp@dbca.wa.gov.au
+If you have questions about this survey or Marmion marine park planning in general please contact the Marmion marine management planning team at marmion@dbca.wa.gov.au
 
 ---
 
