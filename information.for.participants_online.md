@@ -5,7 +5,7 @@
 
 ## Invitation
 
-You have been invited to use the Marine Values Mapper as a member of Perth's northern coastal community or as visitor to the coast between Trigg and Two Rocks.
+You have been invited to use the Marine Values Mapper as a member of Perth's northern coastal community or as a visitor to the coast between Trigg and Two Rocks.
 
 ## Aim
 
@@ -25,7 +25,7 @@ Your participation in this study and any information you provide will be treated
 
 ## Possible benefits
 
-The information you provide will help ensure the review and proposed expansion is suitably designed to protect the values and uses that the community holds for the area. The information collected will be used in marine park planning workshops and stakeholder engagements.
+The information you provide will help ensure the new marine park is suitably designed to protect the values and uses that the community holds for the area. The information collected will be used in marine park planning workshops and stakeholder engagements.
 
 ## Possible risks and how they will be managed
 
@@ -34,7 +34,7 @@ review and proposed expansion of Marmion Marine Park. The aim is to use the info
 
 ## Contacts
 
-If you have questions about this survey or Marmion marine park planning in general please contact the Marmion marine management planning team at marmion@dbca.wa.gov.au
+If you have questions about this survey or the review and proposed expansion of Marmion Marine Park in general please contact the Marmion marine management planning team at marmion@dbca.wa.gov.au
 
 ---
 
