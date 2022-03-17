@@ -381,7 +381,7 @@ server = function(input, output, session) {
     if(nrow(selected.data())==11) {
       shinyalert(
         title = "You have chosen more than 10 activities.",
-        text = "Choosing more than 10 activities/knowledge topics will make the app run slow. Please consider mapping your first 10 activities/knowledge topics now and doing the survey again for other activities later",
+        text = "To maximise performance (e.g., in areas with slow internet connection) please consider only selecting 10 activities at a time. You may repeat the survey to enter your remaining information.",
         type = "warning",
         # timer = 3000,
         closeOnEsc = TRUE,
