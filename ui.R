@@ -593,7 +593,7 @@ html, body, .test_map_div {
                                   textAreaInput(
                                     "generalcomment",
                                     width = "94%",
-                                    label = "Do you have any additional comments you would like to provide?",
+                                    label = "Please provide any additional comments about values for the marine areas of the South Coast that has not already been covered in previous questions:",
                                     placeholder = NULL,
                                     height = "200px"
                                   ),
