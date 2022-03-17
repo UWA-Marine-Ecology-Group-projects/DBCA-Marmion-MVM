@@ -1120,6 +1120,16 @@ server = function(input, output, session) {
                       origin,
                       traditionalowner,
                       generalcomment) %>%
+        group_by(name, email, phone, residence, postcode, gender, age, visited, frequency, traditionalowner, generalcomment) %>%
+        mutate(origin = paste(origin, "", sep = " ")) %>%
+        mutate(origin = list(origin)) %>%
+        mutate(origin = as.character(origin)) %>%
+        mutate(origin = str_replace_all(.$origin, c("[^[:alnum:]]" = "",
+                                                    "c" = "",
+                                                    "Yes" = "Yes, ",
+                                                    "TorresStraitIslander" = "Torres Strait Islander",
+                                                    "nalYes" = "nal. Yes"))) %>%
+        ungroup() %>%
         mutate(userID = userID) %>%
         distinct() %>%
         mutate(source = urlsource) %>%
