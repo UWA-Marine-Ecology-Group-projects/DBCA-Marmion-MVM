@@ -9,7 +9,7 @@ You have been invited to use the Marine Values Mapper as a member of Perth's nor
 
 ## Aim
 
-This Marine Values Mapper will be used to inform marine park planning between Trigg and Two Rocks of Western Australia, helping to ensure management arrangements reflect the community’s knowledge, support sustainable use and protect the values of the area.
+This Marine Values Mapper will be used to inform the review and proposed expansion of Marmion Marine Park, helping to ensure management arrangements reflect the community’s knowledge, support sustainable use and protect the values of the area.
 
 ## Participation
 
@@ -25,11 +25,12 @@ Your participation in this study and any information you provide will be treated
 
 ## Possible benefits
 
-The information you provide will help ensure the Marmion marine park is suitably designed to protect the values and uses that the community holds for the area. The information collected will be used in marine park planning workshops and stakeholder engagements.
+The information you provide will help ensure the review and proposed expansion is suitably designed to protect the values and uses that the community holds for the area. The information collected will be used in marine park planning workshops and stakeholder engagements.
 
 ## Possible risks and how they will be managed
 
-The responses you provide will be used by DBCA and local planners to help design the Marmion marine park. The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
+The responses you provide will be used by DBCA and local planners to help 
+review and proposed expansion of Marmion Marine Park. The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
 
 ## Contacts
 
