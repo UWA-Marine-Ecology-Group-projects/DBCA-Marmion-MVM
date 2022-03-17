@@ -91,9 +91,23 @@ server = function(input, output, session) {
   )
   
   # Need to validate traditional owner but don't collect if user is Not Aboriginal or Torres Strait Islander
+  selected.origin <-  reactive({
+    dat <- input$origin %>%
+      as.data.frame() %>%
+      dplyr::rename(origin = 1)
+    
+    dat <- list(dat$origin) %>%
+      glimpse()
+    
+    print(dat)
+    
+    return(dat)
+  })
+  
   observeEvent(input$origin,
                # If only aboriginal is selected, keep as nothing selected
                if (input$origin %in% c("Yes, Aboriginal")){
+                 print
                  updateRadioButtons(session, "traditionalowner", selected = character(0))
                  
                  # else change to No

@@ -55,8 +55,7 @@ databaseName <- "marmion"
 options(spinner.color="#0275D8", spinner.color.background="#ffffff", spinner.size=2)
 
 ## Read in activity list (downloaded from Googledrive) ----
-activities <- read.csv("data/marmion_activitylist - activity-list.csv", na.strings=c("","NA"))%>%
-  select(-c(Comments))
+activities <- read.csv("data/marmion_activitylist - activity-list.csv", na.strings=c("","NA"))
 
 ## Read in response scales ----
 response.scales <- read.csv("data/Activity list - Response scales.csv", na.strings=c("","NA"))

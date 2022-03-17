@@ -242,11 +242,11 @@ html, body, .test_map_div {
                                                selected = character(0)),
                                   
                                   h4(strong("Are you of Aboriginal or Torres Strait Islander origin?"), labelMandatory("")),
-                                  radioButtons("origin", label = NULL,
-                                               choices = c("No",
-                                                           "Yes, Aboriginal",
-                                                           "Yes, Torres Strait Islander"),
-                                               selected = character(0)),
+                                  checkboxGroupInput("origin", label = NULL,
+                                                     choices = c("No",
+                                                                 "Yes, Aboriginal",
+                                                                 "Yes, Torres Strait Islander"),
+                                                     selected = character(0)),
                                   
                                   conditionalPanel('input.origin.includes("Yes, Aboriginal")',
                                                    h4(strong("Do you identify as a Traditional Owner of the South Coast region?"), labelMandatory("")),
