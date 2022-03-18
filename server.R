@@ -637,7 +637,7 @@ server = function(input, output, session) {
                   paste(
                     "Estimated number of days per year that you participate in",
                     title, 
-                    "across the Marmion region (Trigg to Two Rocks)",
+                    "between Trigg and Two Rocks",
                     sep = " "
                   )
                 ),

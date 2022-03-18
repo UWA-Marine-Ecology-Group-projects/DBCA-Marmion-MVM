@@ -173,6 +173,11 @@ pressures.acc <- activities %>%
 # bathy <- readOGR(dsn="spatial/bathy_cropped_single parts.shp", layer="bathy_cropped_single parts")
 # save(bathy, file = "spatial/bathy.rda")
 
+
+
+bathy <- readOGR(dsn="spatial/bathy_cropped_single parts_state only.shp", layer="bathy_cropped_single parts_state only")
+save(bathy, file = "spatial/bathy.rda")
+
 placenames <- st_read(dsn = "spatial/Marmion_PlaceNames.shp") %>%
   mutate(zoom.on = str_replace_all(.$zoom.on, "8", "10"))
 
@@ -195,10 +200,10 @@ load("spatial/bathy.rda")
 unique(bathy@data$LABEL)
 
 bathy.pal <- colorFactor(palette = "Blues", 
-                         levels = c("0-10m","10-20m","20-50m","50-100m","100-200m","200-500m","500-1000m"))
+                         levels = c("0-10m","10-20m","20-50m"))
 
 bathy$LABEL <- factor(bathy$LABEL, 
-                      levels = c("0-10m","10-20m","20-50m","50-100m","100-200m","200-500m","500-1000m"))
+                      levels = c("0-10m","10-20m","20-50m"))
 
 # Grids for spatial questions ----
 SpP <- SpatialPolygons(grid.1km@polygons)

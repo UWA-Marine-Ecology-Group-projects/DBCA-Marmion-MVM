@@ -249,14 +249,14 @@ html, body, .test_map_div {
                                                      selected = character(0)),
                                   
                                   conditionalPanel('input.origin.includes("Yes, Aboriginal")',
-                                                   h4(strong("Do you identify as a Traditional Owner of the South Coast region?"), labelMandatory("")),
+                                                   h4(strong("Do you identify as a Traditional Owner of the region between Trigg and Two Rocks?"), labelMandatory("")),
                                                    radioButtons("traditionalowner", label = NULL,
                                                                 choices = c("Yes",
                                                                             "No"),
                                                                 selected = character(0))
                                   ),
                                   
-                                  h4(strong("Roughly how often do you visit the coastal areas adjacent to North Beach, Ocean Reef, Yanchep and Two Rocks (e.g., visit a beach or go out on a boat)?"), labelMandatory("")),
+                                  h4(strong("Roughly how often do you visit the coastal areas adjacent to Trigg, Ocean Reef, Yanchep and Two Rocks (e.g., visit a beach or go out on a boat)?"), labelMandatory("")),
                                   radioButtons("frequency", label = NULL,
                                                choices = c("Haven't ever visited",
                                                            "Once every 5+ years",
@@ -510,7 +510,7 @@ html, body, .test_map_div {
                                   br(),
                                   
                                   h3(em(
-                                    "The marine areas between Trigg and Two Rocks provide", strong("me"), "with the following", strong("opportunities or benefits"), "Leave blank if you are unsure." )
+                                    "The marine areas between Trigg and Two Rocks provide", strong("me"), "with the following", strong("opportunities or benefits."), "Leave blank if you are unsure." )
                                   ),
                                   
                                   shinyRadioMatrix::radioMatrixInput(
@@ -537,7 +537,7 @@ html, body, .test_map_div {
                                   
                                   br(),
                                   
-                                  h3(em("The marine areas between Trigg and Two Rocks provide the following", strong("benefits to society"), "Leave blank if you are unsure." )
+                                  h3(em("The marine areas between Trigg and Two Rocks provide the following", strong("benefits to society."), "Leave blank if you are unsure." )
                                   ),
                                   shinyRadioMatrix::radioMatrixInput(
                                     inputId = "rm11",
