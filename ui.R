@@ -29,7 +29,7 @@ function(request) {
 
       tags$script(HTML('
       $(document).ready(function() {
-        $("header").find("nav").append(\'<span class="myClass" margin-top: 10px;> <b> Marmion Marine Values Mapper </b> </span>\');
+        $("header").find("nav").append(\'<span class="myClass" margin-top: 10px;> <b>Marine Values Mapper </b> </span>\');
       })
      ')),
       

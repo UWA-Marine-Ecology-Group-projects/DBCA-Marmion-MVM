@@ -673,7 +673,7 @@ server = function(input, output, session) {
               h4(strong(paste(
                 "Please click on the areas important to you for ",
                 title,
-                ". All cells are 2 km wide at the widest point. ",
+                ". All cells are 1 km wide at the widest point. ",
                 sep = ""
               )), labelMandatory("")),
               
@@ -753,7 +753,7 @@ server = function(input, output, session) {
               
               h4(strong(paste(
                 "Please click on the areas important for the ",
-                simple.title, " you would like to report on. All cells are 2 km wide at the widest point.",
+                simple.title, " you would like to report on. All cells are 1 km wide at the widest point.",
                 sep = ""
               )), labelMandatory("")),
               tags$h4(
@@ -819,7 +819,7 @@ server = function(input, output, session) {
             
             h4(strong(paste(
               "Please click on the areas important for the ",
-              simple.title, " you would like to report on. All cells are 2 km wide at the widest point.",
+              simple.title, " you would like to report on. All cells are 1 km wide at the widest point.",
               sep = ""
             )), labelMandatory("")),
             tags$h4(

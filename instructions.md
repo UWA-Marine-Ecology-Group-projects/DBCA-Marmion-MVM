@@ -4,7 +4,7 @@ Instructions
 </b></p></h1>
 
 <h2><p style = "text-align: center;"></br>
-Use this section to map your use and local knowledge of the marine environment in the Marmion Marine Park
+Use this section to map your use and local knowledge of the marine environment between Trigg and Two Rocks.
 </p></h1>
 
 <h2><p style = "text-align: center;"><b>

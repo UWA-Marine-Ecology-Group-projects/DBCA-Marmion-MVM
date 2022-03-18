@@ -167,6 +167,9 @@ pressures.acc <- activities %>%
 # grid.2km <- readOGR(dsn="spatial/Marmion_state grids_0.016 degrees_2 km.shp", layer="Marmion_state grids_0.016 degrees_2 km")
 # save(grid.2km, file = "spatial/grid.2km.rda")
 
+# grid.1km <- readOGR(dsn="spatial/Marmion_state grids_0.008 degrees_1 km.shp", layer="Marmion_state grids_0.008 degrees_1 km")
+# save(grid.1km, file = "spatial/grid.1km.rda")
+
 # bathy <- readOGR(dsn="spatial/bathy_cropped_single parts.shp", layer="bathy_cropped_single parts")
 # save(bathy, file = "spatial/bathy.rda")
 
@@ -186,7 +189,7 @@ on.12 <- labels %>%
   filter(zoom.on %in% c(12))
 
 # Read in spatial files ----
-load("spatial/grid.2km.rda")
+load("spatial/grid.1km.rda")
 load("spatial/bathy.rda")
 
 unique(bathy@data$LABEL)
@@ -198,7 +201,7 @@ bathy$LABEL <- factor(bathy$LABEL,
                       levels = c("0-10m","10-20m","20-50m","50-100m","100-200m","200-500m","500-1000m"))
 
 # Grids for spatial questions ----
-SpP <- SpatialPolygons(grid.2km@polygons)
+SpP <- SpatialPolygons(grid.1km@polygons)
 
 SpP = SpatialPolygonsDataFrame(
   SpP,

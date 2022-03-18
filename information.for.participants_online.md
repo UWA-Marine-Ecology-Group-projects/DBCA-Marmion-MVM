@@ -1,7 +1,7 @@
 <p style="text-align: center;"> <img src="dbca_logo2.png" width="45%" /> </p>
 
 <h1><p style="text-align: center;"> Information for participants</p></h1>
-<h2><p style="text-align: center;">Marmion Marine Values Mapper</p></h2>
+<h2><p style="text-align: center;">Marine Values Mapper</p></h2>
 
 ## Invitation
 
@@ -25,16 +25,18 @@ Your participation in this study and any information you provide will be treated
 
 ## Possible benefits
 
-The information you provide will help ensure the new marine park is suitably designed to protect the values and uses that the community holds for the area. The information collected will be used in marine park planning workshops and stakeholder engagements.
+The information you provide will be used in marine park planning workshops to help ensure the review process for Marmion Marine Park is as robust as possible,  taking into account community values and uses where possible. 
+
+
 
 ## Possible risks and how they will be managed
 
 The responses you provide will be used by DBCA and local planners to help 
-review and proposed expansion of Marmion Marine Park. The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
+review and proposed expansion of Marmion Marine Park.  The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
 
 ## Contacts
 
-If you have questions about this survey or the review and proposed expansion of Marmion Marine Park in general please contact the Marmion marine management planning team at marmion@dbca.wa.gov.au
+If you have questions about this survey or the review and proposed expansion of Marmion Marine Park in general please contact the Marmion marine planning team at marmion@dbca.wa.gov.au
 
 ---
 
