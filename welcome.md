@@ -1,5 +1,5 @@
 </br>
-<p style = "text-align: center;"> <img src = "reef.jpg" width="90%" />
+<p style = "text-align: center;"> <img src = "reef.JPG" width="90%" />
 
 <h1><p style = "text-align: center;"><b></br>
 Welcome to the Marine Values Mapper for the review and proposed expansion of Marmion Marine Park.</b></p></h1>

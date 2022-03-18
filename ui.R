@@ -497,7 +497,7 @@ html, body, .test_map_div {
                                     "Please indicate on the scale below your level of agreement with each of the following statements. If you are unsure please leave it blank."),
                                   
                                   h3(em(
-                                    "The current level of protection and management of marine areas in Marmion is sufficient to guarantee conservation of marine ecosystems")),
+                                    "The current level of protection and management of marine areas between Trigg and Two Rocks is sufficient to guarantee conservation of marine ecosystems")),
                                   shinyRadioMatrix::radioMatrixInput(
                                     inputId = "rm9",
                                     rowIDsName = paste(" "),
@@ -510,7 +510,7 @@ html, body, .test_map_div {
                                   br(),
                                   
                                   h3(em(
-                                    "The marine areas in the Marmion Marine Park provide", strong("me"), "with the following", strong("opportunities or benefits"), "Leave blank if you are unsure." )
+                                    "The marine areas between Trigg and Two Rocks provide", strong("me"), "with the following", strong("opportunities or benefits"), "Leave blank if you are unsure." )
                                   ),
                                   
                                   shinyRadioMatrix::radioMatrixInput(
@@ -537,7 +537,7 @@ html, body, .test_map_div {
                                   
                                   br(),
                                   
-                                  h3(em("The marine areas in the Marmion Marine Park provide the following", strong("benefits to society"), "Leave blank if you are unsure." )
+                                  h3(em("The marine areas between Trigg and Two Rocks provide the following", strong("benefits to society"), "Leave blank if you are unsure." )
                                   ),
                                   shinyRadioMatrix::radioMatrixInput(
                                     inputId = "rm11",
@@ -593,7 +593,7 @@ html, body, .test_map_div {
                                   textAreaInput(
                                     "generalcomment",
                                     width = "94%",
-                                    label = "Please provide any additional comments about values for the marine areas of the Marmion Coast that have not already been covered in previous questions:",
+                                    label = "Please provide any additional comments about values for the marine areas between Trigg and Two Rocks that have not already been covered in previous questions:",
                                     placeholder = NULL,
                                     height = "200px"
                                   ),
