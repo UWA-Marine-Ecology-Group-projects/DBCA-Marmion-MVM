@@ -21,7 +21,7 @@ Participation is voluntary and you have complete control over the information th
 
 ## Your privacy
 
-Your participation in this study and any information you provide will be treated in a confidential manner. Any data presented publicly,in workshops or in publications will not identify individuals or organisations. Your responses will be stored on password protected computers at DBCA.
+Your participation in this study and any information you provide will be treated in a confidential manner. Any data presented publicly, in workshops or in publications will not identify individuals or organisations. Your responses will be stored on password protected computers at DBCA.
 
 ## Possible benefits
 
@@ -31,8 +31,7 @@ The information you provide will be used in marine park planning workshops to he
 
 ## Possible risks and how they will be managed
 
-The responses you provide will be used by DBCA and local planners to help 
-review and proposed expansion of Marmion Marine Park.  The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
+The responses you provide will be used by DBCA and local planners to help review the current Marmion Marine Park and proposed expansion area.  The aim is to use the information to minimise the impact of management arrangements on marine users, where possible. 
 
 ## Contacts
 
@@ -42,7 +41,7 @@ If you have questions about this survey or the review and proposed expansion of 
 
 ## Consent statement
 
-I agree to participate in this research project and understand  I may withdraw at any time. 
+I agree to participate in this research project and understand I may withdraw at any time. 
 
 I understand that all personal contact information  I provide is treated as confidential and will not be released by the researchers in any form that identifies me unless I have provided consent. The only exception to this principle of confidentiality is if this information is required by law to be released.
 
