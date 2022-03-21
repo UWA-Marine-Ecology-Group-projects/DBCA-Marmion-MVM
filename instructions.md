@@ -1,12 +1,8 @@
 <p style="text-align: center;"> <img src="info.png" width="30%" /></p>
-<h1><p style = "text-align: center;"><b></br>
-Instructions
-</b></p></h1>
-
-<h2><p style = "text-align: center;"></br>
+<h1><p style = "text-align: center;"><b>Instructions</b></p></h1>
+<h2><p style = "text-align: center;">
 Use this section to map your use and local knowledge of the marine environment between Trigg and Two Rocks.
 </p></h1>
-
 <h2><p style = "text-align: center;"><b>
 There are 2 steps:
 </b></p></h2>
