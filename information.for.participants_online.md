@@ -21,7 +21,7 @@ Participation is voluntary and you have complete control over the information th
 
 ## Your privacy
 
-Your participation in this study and any information you provide will be treated in a confidential manner. Any data presented publicly, in workshops or in publications will not identify individuals or organisations. Your responses will be stored on password protected computers at DBCA.
+Your participation in this study and any information you provide will be treated in a confidential manner. Any data presented publicly, in workshops or in publications will not identify individuals or organisations. Your responses will be stored on password protected computers at the Department of Biodiversity Conservation and Attractions (DBCA).
 
 ## Possible benefits
 
