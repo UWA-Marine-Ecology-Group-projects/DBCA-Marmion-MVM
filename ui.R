@@ -3,7 +3,7 @@ function(request) {
     dashboardHeader(titleWidth = "0px",
       tags$li(class = "dropdown",
               a(href="https://www.dbca.wa.gov.au/", target="_blank", 
-                     img(height = "50px", 
+                     img(width = "40%", 
                          src="dbca_logo_white_cropped.png")
               ))),
     dashboardSidebar(width = "0px"),
