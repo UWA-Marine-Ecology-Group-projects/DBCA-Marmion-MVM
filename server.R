@@ -88,6 +88,76 @@ server = function(input, output, session) {
   observeEvent(input$is_mobile_device, {
     
     if(isTRUE(input$is_mobile_device) == "TRUE"){
+      
+      # Show the shiny modal on start up with welcome info ----
+      showModal(
+        modalDialog(
+          size = "l",
+          includeMarkdown("welcome.md"),
+          easyClose = FALSE,
+          fade = TRUE,
+          footer = NULL,
+          div(
+            style = "display:inline-block;width:100%;text-align: center;",
+            actionBttn(
+              inputId = "ok",
+              label = "Ok",
+              style = "unite",
+              size = "lg",
+              color = "primary"
+            )
+          )
+        )
+      )
+      
+      # Then show information for participants ----
+      observeEvent(input$ok, {
+        showModal(modalDialog(
+          size = "l",
+          includeMarkdown("information.for.participants_online.md"),
+          footer = NULL,
+          fade = T,
+          div(
+            style = "display:inline-block;width:100%;text-align: center;",
+            actionBttn(
+              inputId = "accept",
+              label = "Yes",
+              style = "unite",
+              size = "lg",
+              color = "primary"
+            ),
+            actionBttn(
+              inputId = "decline",
+              label = "No",
+              style = "unite",
+              size = "lg",
+              color = "danger"
+            )
+          )
+        ))
+      })
+      
+      # If user accepts the information for participants then close the modal and allow user to complete the survey ----
+      observeEvent(input$accept, {
+        removeModal()
+      })
+      
+      # If user declines the information for participants then a new modal will display with instructions on how to exit ----
+      observeEvent(input$decline, {
+        shinyalert(
+          title = "You have chosen to not participate in this study. ",
+          text = "We thank you for your time. Please close this window or tab to exit the study.",
+          size = "s",
+          closeOnEsc = FALSE,
+          closeOnClickOutside = FALSE,
+          html = FALSE,
+          type = "error",
+          showConfirmButton = FALSE,
+          timer = 0,
+          animation = TRUE
+        )
+      })
+      
     # shinyalert(
     #   title = "Mobile device detected",
     #   text = "Please turn your device on its side so it is in landscape mode or use a desktop/laptop/tablet",
