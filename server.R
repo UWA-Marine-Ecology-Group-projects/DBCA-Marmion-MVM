@@ -11,9 +11,18 @@ server = function(input, output, session) {
     ifelse(input$isMobile, "You are on a mobile device", "You are not on a mobile device")
   })
   
-  is_mobile_device <- reactive(isTRUE(input$isMobile)%>%glimpse())
+  # is_mobile_device <- reactive(isTRUE(input$isMobile)%>%glimpse())
   
-  observeEvent(input$isMobile == FALSE, {
+  is_mobile_device <- reactive(as.character(isTRUE(input$is_mobile_device)))
+  
+  observeEvent(input$is_mobile_device, {
+    print("mobile check")
+    print(is_mobile_device())
+  })
+  
+  observeEvent(input$is_mobile_device, {
+    
+    if(isTRUE(input$is_mobile_device) == "TRUE"){
     shinyalert(
       title = "Mobile device detected. ",
       text = "Please turn landscape.",
@@ -25,7 +34,7 @@ server = function(input, output, session) {
       showConfirmButton = TRUE,
       timer = 0,
       animation = TRUE
-    )
+    )}
   })
   
   # Pretty disconnect message ----

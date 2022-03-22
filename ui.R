@@ -4,7 +4,7 @@ function(request) {
       tags$li(class = "dropdown",
               ifelse("input.isMobile", 
                      a(href="https://www.dbca.wa.gov.au/", target="_blank", 
-                       img(height = "50px", 
+                       img(height = "40%", 
                            src="dbca_logo_white_cropped.png")
                      ),
                      a(href="https://www.dbca.wa.gov.au/", target="_blank", 
