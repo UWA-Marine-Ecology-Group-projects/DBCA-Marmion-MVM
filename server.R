@@ -14,50 +14,6 @@ server = function(input, output, session) {
     print(is_mobile_device())
   })
   
-  observeEvent(input$is_mobile_device, {
-    
-    if(isTRUE(input$is_mobile_device) == "TRUE"){
-    # shinyalert(
-    #   title = "Mobile device detected",
-    #   text = "Please turn your device on its side so it is in landscape mode or use a desktop/laptop/tablet",
-    #   size = "s",
-    #   closeOnEsc = TRUE,
-    #   closeOnClickOutside = TRUE,
-    #   html = FALSE,
-    #   type = "warning",
-    #   showConfirmButton = TRUE,
-    #   timer = 0,
-    #   animation = TRUE
-    # )
-      showModal(
-        modalDialog(
-          size = "m",
-          includeMarkdown("mobile-warning.md"),
-          easyClose = TRUE,
-          fade = TRUE,
-          footer = NULL,
-          div(
-            style = "display:inline-block;width:100%;text-align: center;",
-            actionBttn(
-              inputId = "oki",
-              label = "Ok",
-              style = "unite",
-              size = "lg",
-              color = "primary"
-            )
-          )
-        )
-      )
-      
-      
-      
-      }
-  })
-  
-  # Pretty disconnect message ----
-  observeEvent(input$disconnect, {
-    session$close()
-  })
   
   # Show the shiny modal on start up with welcome info ----
   showModal(
@@ -126,6 +82,52 @@ server = function(input, output, session) {
       timer = 0,
       animation = TRUE
     )
+  })
+  
+  
+  observeEvent(input$is_mobile_device, {
+    
+    if(isTRUE(input$is_mobile_device) == "TRUE"){
+    # shinyalert(
+    #   title = "Mobile device detected",
+    #   text = "Please turn your device on its side so it is in landscape mode or use a desktop/laptop/tablet",
+    #   size = "s",
+    #   closeOnEsc = TRUE,
+    #   closeOnClickOutside = TRUE,
+    #   html = FALSE,
+    #   type = "warning",
+    #   showConfirmButton = TRUE,
+    #   timer = 0,
+    #   animation = TRUE
+    # )
+      showModal(
+        modalDialog(
+          size = "m",
+          includeMarkdown("mobile-warning.md"),
+          easyClose = TRUE,
+          fade = TRUE,
+          footer = NULL,
+          div(
+            style = "display:inline-block;width:100%;text-align: center;",
+            actionBttn(
+              inputId = "oki",
+              label = "Ok",
+              style = "unite",
+              size = "lg",
+              color = "primary"
+            )
+          )
+        )
+      )
+      
+      
+      
+      }
+  })
+  
+  # Pretty disconnect message ----
+  observeEvent(input$disconnect, {
+    session$close()
   })
   
   # Need to validate postcode, but don't collect a postcode if user is from overseas.
