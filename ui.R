@@ -11,10 +11,11 @@ function(request) {
               #          img(height = "50px", 
               #              src="dbca_logo_white.png")
               #        ))
+              div(style="text-align: right; margin-bottom: 10px; margin-top: 10px; margin-right: 10px;", 
               a(href="https://www.dbca.wa.gov.au/", target="_blank",
-                     img(width = "50%",
+                     img(width = "50%", 
                          src="dbca_logo_white.png")
-              )
+              ))
       )),
     dashboardSidebar(width = "0px"),
     dashboardBody(
