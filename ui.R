@@ -2,10 +2,21 @@ function(request) {
   dashboardPage(
     dashboardHeader(titleWidth = "0px",
       tags$li(class = "dropdown",
-              a(href="https://www.dbca.wa.gov.au/", target="_blank", 
-                     img(height = "50px", 
-                         src="dbca_logo_white_cropped.png")
-              ))),
+              
+              ifelse("input.isMobile", 
+                     a(href="https://www.dbca.wa.gov.au/", target="_blank", 
+                       img(height = "50px", 
+                           src="dbca_logo_white_cropped.png")
+                     ),
+                     a(href="https://www.dbca.wa.gov.au/", target="_blank", 
+                       img(height = "50px", 
+                           src="dbca_logo_white.png")
+                     ))
+              # a(href="https://www.dbca.wa.gov.au/", target="_blank", 
+              #        img(height = "50px", 
+              #            src="dbca_logo_white_cropped.png")
+              # )
+              )),
     dashboardSidebar(width = "0px"),
     dashboardBody(
       tags$head(includeHTML(("google-analytics.html"))),
