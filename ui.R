@@ -200,6 +200,9 @@ html, body, .test_map_div {
                                   
                                   h1("Please fill out your contact information:"),
                                   
+                                  mobileDetect('isMobile'),
+                                  textOutput('isItMobile'),
+                                  
                                   h4(strong("Full name:"), labelMandatory("")),
                                   textInput(width = '94%', "name", NULL),
                                   

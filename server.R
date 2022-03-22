@@ -6,6 +6,11 @@ server = function(input, output, session) {
   hideTab(inputId = "surveybox", target = "Spatial questions")
   hideTab(inputId = "surveybox", target = "Social values and benefits")
   
+  # Detect mobile
+  output$isItMobile <- renderText({
+    ifelse(input$isMobile, "You are on a mobile device", "You are not on a mobile device")
+  })
+  
   # Pretty disconnect message ----
   observeEvent(input$disconnect, {
     session$close()

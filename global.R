@@ -437,3 +437,11 @@ isValidEmail <- function(x) {
         ignore.case=TRUE)
 }
 
+mobileDetect <- function(inputId, value = 0) {
+  tagList(
+    singleton(tags$head(tags$script(src = "js/mobile.js"))),
+    tags$input(id = inputId,
+               class = "mobile-element",
+               type = "hidden")
+  )
+}
