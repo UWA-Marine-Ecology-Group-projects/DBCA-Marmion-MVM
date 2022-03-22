@@ -7,12 +7,6 @@ server = function(input, output, session) {
   hideTab(inputId = "surveybox", target = "Social values and benefits")
   
   # Detect mobile
-  output$isItMobile <- renderText({
-    ifelse(input$isMobile, "You are on a mobile device", "You are not on a mobile device")
-  })
-  
-  # is_mobile_device <- reactive(isTRUE(input$isMobile)%>%glimpse())
-  
   is_mobile_device <- reactive(as.character(isTRUE(input$is_mobile_device)))
   
   observeEvent(input$is_mobile_device, {

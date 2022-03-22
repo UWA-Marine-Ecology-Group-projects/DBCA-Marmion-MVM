@@ -2,19 +2,19 @@ function(request) {
   dashboardPage(
     dashboardHeader(titleWidth = "0px",
       tags$li(class = "dropdown",
-              ifelse("input.isMobile", 
-                     a(href="https://www.dbca.wa.gov.au/", target="_blank", 
-                       img(height = "40%", 
-                           src="dbca_logo_white_cropped.png")
-                     ),
-                     a(href="https://www.dbca.wa.gov.au/", target="_blank", 
-                       img(height = "50px", 
-                           src="dbca_logo_white.png")
-                     ))
-              # a(href="https://www.dbca.wa.gov.au/", target="_blank", 
-              #        img(height = "50px", 
-              #            src="dbca_logo_white_cropped.png")
-              # )
+              # ifelse('input.is_mobile_device == "TRUE"', 
+              #        a(href="https://www.dbca.wa.gov.au/", target="_blank", 
+              #          img(height = "40%", 
+              #              src="dbca_logo_white_cropped.png")
+              #        ),
+              #        a(href="https://www.dbca.wa.gov.au/", target="_blank", 
+              #          img(height = "50px", 
+              #              src="dbca_logo_white.png")
+              #        ))
+              a(href="https://www.dbca.wa.gov.au/", target="_blank",
+                     img(width = "50%",
+                         src="dbca_logo_white.png")
+              )
       )),
     dashboardSidebar(width = "0px"),
     dashboardBody(
@@ -211,7 +211,6 @@ html, body, .test_map_div {
                                   h1("Please fill out your contact information:"),
                                   
                                   mobileDetect('isMobile'),
-                                  textOutput('isItMobile'),
                                   
                                   h4(strong("Full name:"), labelMandatory("")),
                                   textInput(width = '94%', "name", NULL),
