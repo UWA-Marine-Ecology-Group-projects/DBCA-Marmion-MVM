@@ -17,18 +17,41 @@ server = function(input, output, session) {
   observeEvent(input$is_mobile_device, {
     
     if(isTRUE(input$is_mobile_device) == "TRUE"){
-    shinyalert(
-      title = "Mobile device detected",
-      text = "Please turn your device on its side so it is in landscape mode or use a desktop/laptop/tablet",
-      size = "s",
-      closeOnEsc = TRUE,
-      closeOnClickOutside = TRUE,
-      html = FALSE,
-      type = "warning",
-      showConfirmButton = TRUE,
-      timer = 0,
-      animation = TRUE
-    )}
+    # shinyalert(
+    #   title = "Mobile device detected",
+    #   text = "Please turn your device on its side so it is in landscape mode or use a desktop/laptop/tablet",
+    #   size = "s",
+    #   closeOnEsc = TRUE,
+    #   closeOnClickOutside = TRUE,
+    #   html = FALSE,
+    #   type = "warning",
+    #   showConfirmButton = TRUE,
+    #   timer = 0,
+    #   animation = TRUE
+    # )
+      showModal(
+        modalDialog(
+          size = "m",
+          includeMarkdown("mobile-warning.md"),
+          easyClose = TRUE,
+          fade = TRUE,
+          footer = NULL,
+          div(
+            style = "display:inline-block;width:100%;text-align: center;",
+            actionBttn(
+              inputId = "oki",
+              label = "Ok",
+              style = "unite",
+              size = "lg",
+              color = "primary"
+            )
+          )
+        )
+      )
+      
+      
+      
+      }
   })
   
   # Pretty disconnect message ----
