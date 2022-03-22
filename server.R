@@ -18,13 +18,13 @@ server = function(input, output, session) {
     
     if(isTRUE(input$is_mobile_device) == "TRUE"){
     shinyalert(
-      title = "Mobile device detected. ",
-      text = "Please turn landscape.",
+      title = "Mobile device detected",
+      text = "Please turn your device on its side so it is in landscape mode or use a desktop/laptop/tablet",
       size = "s",
       closeOnEsc = TRUE,
       closeOnClickOutside = TRUE,
       html = FALSE,
-      type = "error",
+      type = "warning",
       showConfirmButton = TRUE,
       timer = 0,
       animation = TRUE
