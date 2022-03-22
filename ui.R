@@ -4,7 +4,7 @@ function(request) {
       tags$li(class = "dropdown",
               a(href="https://www.dbca.wa.gov.au/", target="_blank", 
                      img(height = "50px", 
-                         src="dbca_logo_white.png")
+                         src="dbca_logo_white_cropped.png")
               ))),
     dashboardSidebar(width = "0px"),
     dashboardBody(

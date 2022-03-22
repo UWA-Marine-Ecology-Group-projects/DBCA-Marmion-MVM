@@ -11,6 +11,23 @@ server = function(input, output, session) {
     ifelse(input$isMobile, "You are on a mobile device", "You are not on a mobile device")
   })
   
+  is_mobile_device <- reactive(isTRUE(input$isMobile)%>%glimpse())
+  
+  observeEvent(input$isMobile == FALSE, {
+    shinyalert(
+      title = "Mobile device detected. ",
+      text = "Please turn landscape.",
+      size = "s",
+      closeOnEsc = TRUE,
+      closeOnClickOutside = TRUE,
+      html = FALSE,
+      type = "error",
+      showConfirmButton = TRUE,
+      timer = 0,
+      animation = TRUE
+    )
+  })
+  
   # Pretty disconnect message ----
   observeEvent(input$disconnect, {
     session$close()
