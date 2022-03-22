@@ -13,9 +13,14 @@ function(request) {
               #        ))
               div(style="text-align: right; margin-bottom: 10px; margin-top: 10px; margin-right: 10px;", 
               a(href="https://www.dbca.wa.gov.au/", target="_blank",
-                     img(width = "50%", 
-                         src="dbca_logo_white.png")
-              ))
+                     img(width = "8%", 
+                         src="dbca_logo_white_cropped.png") # 50% if not cropped
+              ),
+              # div(style="text-align: left; margin-bottom: 10px; margin-top: 10px; margin-right: 10px;",
+                  a(href="https://www.dbca.wa.gov.au/", target="_blank",
+                    img(width = "15%",
+                        src="etntac-flora-only.png")
+                  ))
       )),
     dashboardSidebar(width = "0px"),
     dashboardBody(
