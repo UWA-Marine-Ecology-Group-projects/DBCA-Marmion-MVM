@@ -63,7 +63,7 @@ activities <- read.csv("data/marmion_activitylist - activity-list.csv", na.strin
 response.scales <- read.csv("data/Activity list - Response scales.csv", na.strings=c("","NA"))
 
 ## Read in questions (only using this in the matrix style so far) ----
-questions <- read.csv("data/Activity list - questions.csv", na.strings=c("","NA")) %>%
+questions <- read.csv("data/marmion_activitylist - questions.csv", na.strings=c("","NA")) %>%
   dplyr::select(section, question, type, response.items.for.matrix.only, scale.name, question.number)%>%
   mutate(question.number = as.character(question.number))
 
