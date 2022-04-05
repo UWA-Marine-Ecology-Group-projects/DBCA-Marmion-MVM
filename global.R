@@ -239,7 +239,7 @@ SpP = SpatialPolygonsDataFrame(
 # m
 
 # which fields get saved ----
-fieldsAll <- c("name", "email", "phone", "residence","postcode", "gender", "age", "origin", "traditionalowner", "generalcomment", "frequency", activity.input.list, values.input.list, pressures.input.list, "visited")
+fieldsAll <- c("name", "email", "phone", "residence","postcode", "gender", "age", "origin", "traditionalowner", "generalcomment", "frequency", activity.input.list, values.input.list, pressures.input.list, "visited", "awaremarmionmarinepark", "fishinginsanctuary", "recreationinsanctuary")
 
 # which fields are mandatory ----
 fieldsMandatory <- c("name", "email", "phone", "residence", "gender", "age", "origin", "traditionalowner")

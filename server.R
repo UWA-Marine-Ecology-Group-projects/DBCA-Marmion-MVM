@@ -1053,11 +1053,14 @@ server = function(input, output, session) {
     # Save polygons clicked - write to dropbox and googledrive ----
     observeEvent(input$submit, {
       # this only works up here for some reason ----
-      
-      if (is.null(input$visited)){
+      # awaremarmionmarinepark, fishinginsanctuary, recreationinsanctuary
+      if (is.null(input$visited) | 
+          is.null(input$awaremarmionmarinepark) |
+          is.null(input$fishinginsanctuary) |
+          is.null(input$recreationinsanctuary)){
         
         shinyalert(
-          "Please answer the 'Have you ever visited a marine park...' question",
+          "Please answer all Yes/No/Unsure questions",
           type = "error",
           timer = 3000,
           closeOnEsc = TRUE,
@@ -1080,9 +1083,6 @@ server = function(input, output, session) {
       timer = 0,
       animation = FALSE
     )
-      
-      # Sys.sleep(5)
-
       # Create a unique UserID ----
       userID <- randomID(1)
       
@@ -1127,6 +1127,9 @@ server = function(input, output, session) {
       data <- as.data.frame(do.call(cbind, data)) %>% distinct() %>% glimpse()
       
       vis.cols <- c(visited = NA_real_,
+                    awaremarmionmarinepark = NA_real_,
+                    fishinginsanctuary = NA_real_,
+                    recreationinsanctuary = NA_real_,
                     name = NA_real_,
                     email = NA_real_,
                     phone = NA_real_,
@@ -1152,11 +1155,14 @@ server = function(input, output, session) {
                       gender,
                       age,
                       visited,
+                      awaremarmionmarinepark, 
+                      fishinginsanctuary, 
+                      recreationinsanctuary,
                       frequency,
                       origin,
                       traditionalowner,
                       generalcomment) %>%
-        group_by(name, email, phone, residence, postcode, gender, age, visited, frequency, traditionalowner, generalcomment) %>%
+        group_by(name, email, phone, residence, postcode, gender, age, visited, awaremarmionmarinepark, fishinginsanctuary, recreationinsanctuary, frequency, traditionalowner, generalcomment) %>%
         mutate(origin = paste(origin, "", sep = " ")) %>%
         mutate(origin = list(origin)) %>%
         mutate(origin = as.character(origin)) %>%
@@ -1176,7 +1182,7 @@ server = function(input, output, session) {
       activities <- data %>%
         add_column(!!!vis.cols[!names(vis.cols) %in% names(.)]) %>%
         glimpse() %>%
-        dplyr::select(!c(name, email, phone, residence, postcode, gender, age, visited, frequency, origin, traditionalowner, generalcomment)) %>%
+        dplyr::select(!c(name, email, phone, residence, postcode, gender, age, visited, awaremarmionmarinepark, fishinginsanctuary, recreationinsanctuary, frequency, origin, traditionalowner, generalcomment)) %>%
         distinct() %>%
         glimpse() %>%
         mutate(blank_activities = "blank") %>% # create a dummy column so gather works
@@ -1243,6 +1249,7 @@ server = function(input, output, session) {
           age,
           frequency,
           visited,
+          awaremarmionmarinepark, fishinginsanctuary, recreationinsanctuary,
           userID,
           activity.or.value,
           category,

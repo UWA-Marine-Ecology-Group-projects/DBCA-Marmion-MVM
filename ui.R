@@ -245,7 +245,9 @@ html, body, .test_map_div {
                                   
                                   h4(strong("To which age group do you belong?"), labelMandatory("")),
                                   radioButtons("age", label = NULL,
-                                               choices = c("18-24",
+                                               choices = c("0-12",
+                                                           "13-17",
+                                                           "18-24",
                                                            "25-34",
                                                            "35-44",
                                                            "45-54",
@@ -586,6 +588,47 @@ html, body, .test_map_div {
                                                 "Unsure"),
                                     selected = character(0)
                                   ))),
+                                  br(),
+                                  
+                                  # awaremarmionmarinepark, fishinginsanctuary, recreationinsanctuary
+                                  
+                                  div(style="margin-left: 30px;",
+                                      h4(strong("Were you aware that Marmion is a Marine Park?"), labelMandatory("")),
+                                      div(style="margin-left: 30px;",
+                                          radioButtons(
+                                            "awaremarmionmarinepark",
+                                            label = NULL,
+                                            choices = c("Yes",
+                                                        "No",
+                                                        "Unsure"),
+                                            selected = character(0)
+                                          ))),
+                                  br(),
+                                  
+                                  div(style="margin-left: 30px;",
+                                      h4(strong("Is recreation fishing permitted in the sanctuary zones?"), labelMandatory("")),
+                                      div(style="margin-left: 30px;",
+                                          radioButtons(
+                                            "fishinginsanctuary",
+                                            label = NULL,
+                                            choices = c("Yes",
+                                                        "No",
+                                                        "Unsure"),
+                                            selected = character(0)
+                                          ))),
+                                  br(),
+                                  
+                                  div(style="margin-left: 30px;",
+                                      h4(strong("Are boating, diving and snorkelling permitted in the sanctuary zones?"), labelMandatory("")),
+                                      div(style="margin-left: 30px;",
+                                          radioButtons(
+                                            "recreationinsanctuary",
+                                            label = NULL,
+                                            choices = c("Yes",
+                                                        "No",
+                                                        "Unsure"),
+                                            selected = character(0)
+                                          ))),
                                   br(),
                                   
                                   shinyRadioMatrix::radioMatrixInput(
