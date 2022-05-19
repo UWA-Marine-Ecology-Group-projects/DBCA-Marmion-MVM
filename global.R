@@ -218,6 +218,8 @@ SpP = SpatialPolygonsDataFrame(
   ))),
   match.ID = FALSE
 )
+dir.create("tempdir")
+writeOGR(obj=SpP, dsn="tempdir", layer="Marmion", driver="ESRI Shapefile") # this is in geographical projection
 
 # Testing out navigation charts=
 # r <- raster("spatial/cropped_raster.tif")
