@@ -5,6 +5,7 @@ server = function(input, output, session) {
   hideTab(inputId = "surveybox", target = "Values mapping")
   hideTab(inputId = "surveybox", target = "Spatial questions")
   hideTab(inputId = "surveybox", target = "Social values and benefits")
+  session$allowReconnect(TRUE)
   
   # Detect mobile
   is_mobile_device <- reactive(as.character(isTRUE(input$is_mobile_device)))
