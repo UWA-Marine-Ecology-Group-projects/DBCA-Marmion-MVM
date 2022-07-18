@@ -132,10 +132,12 @@ activity.acc <- activities %>%
 other.acc <- activities %>%
   dplyr::mutate(nice.title = paste(Category, Sub.category, sep = " - "),
                 nice.cat = Category,
-                nice.act = Sub.category) %>%
+                nice.sub = Sub.category,
+                nice.act = Activity) %>%
   dplyr::filter(Category %in% c("Other")) %>%
   dplyr::mutate(Category = stringr::str_replace_all(.$Category, c("," = "", "[^[:alnum:]]" = "_", "___" = "_", "__" = "_", "\\_$" = ""))) %>%
   dplyr::mutate(Sub.category = stringr::str_replace_all(.$Sub.category, c("," = "", "[^[:alnum:]]" = "_", "___" = "_", "__" = "_", "\\_$" = ""))) %>%
+  dplyr::mutate(Activity = stringr::str_replace_all(.$Activity, c("," = "", "[^[:alnum:]]" = "_", "___" = "_", "__" = "_", "\\_$" = ""))) %>%
   dplyr::mutate(checkbox = paste("checkbox_", Category, sep = "")) %>%
   glimpse()
 
@@ -218,8 +220,9 @@ SpP = SpatialPolygonsDataFrame(
   ))),
   match.ID = FALSE
 )
-dir.create("tempdir")
-writeOGR(obj=SpP, dsn="tempdir", layer="Marmion", driver="ESRI Shapefile") # this is in geographical projection
+
+# dir.create("tempdir")
+# writeOGR(obj=SpP, dsn="tempdir", layer="Marmion", driver="ESRI Shapefile") # this is in geographical projection
 
 # Testing out navigation charts=
 # r <- raster("spatial/cropped_raster.tif")
