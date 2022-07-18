@@ -453,6 +453,7 @@ html, body, .test_map_div {
                                   br(),
                                   br(),
                                   br(),
+                                  
                                   # Other activities ----
                                   h2("Use an “other” option if you would like to map anything not listed above. You will be asked to describe the activity or knowledge on the next page."),
                                   accordion(id = "id-accordiono1",
