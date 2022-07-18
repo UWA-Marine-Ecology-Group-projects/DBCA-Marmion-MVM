@@ -811,6 +811,8 @@ server = function(input, output, session) {
     
   })
   
+  
+  
   # Create plot tag list and create leaflet outputs for each value selected ----
   observeEvent(input$nextspatial, {
     output$values_plots <- renderUI({
